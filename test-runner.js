@@ -18,7 +18,7 @@ page.open("http://www.viget.com", function(status) {
     page.evaluate(function() {
         
         // Undefine GA
-	      window._gat = undefined;
+	window._gat = undefined;
         window._gaq = [['_setAccount', 'UA-00000000-1']];
         
         // Run tests
