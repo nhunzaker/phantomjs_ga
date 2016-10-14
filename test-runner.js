@@ -1,7 +1,7 @@
 var page = require("webpage").create();
 
-page.open("http://www.viget.com", function(status) {
-    
+page.open("https://www.viget.com", function(status) {
+
     if (status !== 'success') {
         console.error("Failed to open", page.frameUrl);
         phantom.exit();
@@ -9,18 +9,19 @@ page.open("http://www.viget.com", function(status) {
 
     page.injectJs("lib/mocha.js");
     page.injectJs("lib/sinon.js");
+    page.injectJs("lib/jquery.js");
 
     page.injectJs("src/reporter.js");
     page.injectJs("src/rules.js");
 
     page.injectJs("tests/home-test.js");
-    
+
     page.evaluate(function() {
-        
+
         // Undefine GA
 	window._gat = undefined;
         window._gaq = [['_setAccount', 'UA-00000000-1']];
-        
+
         // Run tests
         window.mocha.run();
     });
